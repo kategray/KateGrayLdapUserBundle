@@ -1,11 +1,11 @@
 <?php
+
 namespace KateGray\LdapUserBundle\Security\User;
 
 use KateGray\LdapUserBundle\Model\OpenLdap\StandardUser;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class LdapUserProvider implements UserProviderInterface
 {
@@ -25,10 +25,10 @@ class LdapUserProvider implements UserProviderInterface
         return $this->loadUserByUsername($user->getUsername());
     }
 
-
-    public function supportsClass ($class) {
-var_dump ($class);
-exit ();
+    public function supportsClass($class)
+    {
+        var_dump($class);
+        exit();
         if ($class === 'KateGray\\LdapUserBundle\\Model\\OpenLdap\\StandardUser') {
             return true;
         }

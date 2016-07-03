@@ -2,8 +2,8 @@
 
 namespace KateGray\LdapUserBundle\Security\User;
 
-use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserManagerInterface;
 use KateGray\LdapUserBundle\Layout\LayoutInterface;
 use KateGray\LdapUserBundle\Model\OpenLdap\StandardUser;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 class LdapUserManager implements UserManagerInterface
 {
     /**
-     * Configuration
+     * Configuration.
      */
     protected $configuration;
 
@@ -28,7 +28,8 @@ class LdapUserManager implements UserManagerInterface
     /*
      * @Todo: Get these from the configuration
      */
-    public function __construct (EncoderFactoryInterface $encoderFactory, LayoutInterface $layout, $configuration) {
+    public function __construct(EncoderFactoryInterface $encoderFactory, LayoutInterface $layout, $configuration)
+    {
         $this->encoderFactory = $encoderFactory;
         $this->layout = $layout;
         $this->configuration = $configuration;
@@ -39,7 +40,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface
      */
-    public function createUser() {
+    public function createUser()
+    {
         $user = new StandardUser();
 
         return $user;
@@ -52,8 +54,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function deleteUser(UserInterface $user) {
-
+    public function deleteUser(UserInterface $user)
+    {
     }
 
     /**
@@ -63,8 +65,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface
      */
-    public function findUserBy(array $criteria) {
-
+    public function findUserBy(array $criteria)
+    {
     }
 
     /**
@@ -74,8 +76,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsername($username) {
-
+    public function findUserByUsername($username)
+    {
     }
 
     /**
@@ -85,8 +87,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByEmail($email) {
-
+    public function findUserByEmail($email)
+    {
     }
 
     /**
@@ -96,8 +98,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsernameOrEmail($usernameOrEmail) {
-
+    public function findUserByUsernameOrEmail($usernameOrEmail)
+    {
     }
 
     /**
@@ -107,8 +109,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByConfirmationToken($token) {
-
+    public function findUserByConfirmationToken($token)
+    {
     }
 
     /**
@@ -116,8 +118,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return \Traversable
      */
-    public function findUsers() {
-
+    public function findUsers()
+    {
     }
 
     /**
@@ -125,7 +127,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return string
      */
-    public function getClass() {
+    public function getClass()
+    {
     }
 
     /**
@@ -135,8 +138,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function reloadUser(UserInterface $user) {
-
+    public function reloadUser(UserInterface $user)
+    {
     }
 
     /**
@@ -146,16 +149,17 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updateUser(UserInterface $user) {
+    public function updateUser(UserInterface $user)
+    {
         $this->updateCanonicalFields($user);
         $this->updatePassword($user);
 
         // Layout the user
-        $node = $this->layout->layout ($user);
+        $node = $this->layout->layout($user);
 
-        var_dump ($node);
-        var_dump ($user);
-        exit ('Updating user');
+        var_dump($node);
+        var_dump($user);
+        exit('Updating user');
     }
 
     /**
@@ -165,8 +169,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updateCanonicalFields(UserInterface $user) {
-
+    public function updateCanonicalFields(UserInterface $user)
+    {
     }
 
     /**
@@ -176,7 +180,8 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updatePassword(UserInterface $user) {
+    public function updatePassword(UserInterface $user)
+    {
         if (0 !== strlen($password = $user->getPlainPassword())) {
             $encoder = $this->getEncoder($user);
             $user->setPassword($encoder->encodePassword($password, $user->getSalt()));

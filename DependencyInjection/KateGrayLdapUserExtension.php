@@ -6,7 +6,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 
 class KateGrayLdapUserExtension extends Extension
 {
@@ -24,13 +23,13 @@ class KateGrayLdapUserExtension extends Extension
             case 'openldap_standard':
                 $layout_service = 'kategray.ldap_user_bundle.layout.openldap_standard';
         }
-        
+
         if ($layout_service) {
             $container->setAlias('kategray.ldap_user_bundle.layout', $layout_service);
         }
         $container->setParameter('kategray.ldap_user_bundle.config', $config);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
     }
 
@@ -39,7 +38,7 @@ class KateGrayLdapUserExtension extends Extension
      */
     public function getXsdValidationBasePath()
     {
-        return __DIR__.'/../Resources/config/schema';
+        return __DIR__ . '/../Resources/config/schema';
     }
 
     /**

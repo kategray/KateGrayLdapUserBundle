@@ -10,7 +10,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
- *
  */
 class Configuration implements ConfigurationInterface
 {
@@ -30,7 +29,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('layout')
                     ->defaultValue('openldap_standard')
                     ->validate()
-                        ->ifNotInArray(array('openldap_standard'))
+                        ->ifNotInArray(['openldap_standard'])
                         ->thenInvalid('The layout %s is not supported')
                     ->end()
                 ->end()
@@ -42,7 +41,7 @@ class Configuration implements ConfigurationInterface
                             ->cannotBeEmpty()
                             ->defaultValue('mail')
                             ->validate()
-                                ->ifNotInArray(array('mail', 'uid'))
+                                ->ifNotInArray(['mail', 'uid'])
                                 ->thenInvalid('The primary attribute %s is not supported')
                             ->end()
                         ->end()

@@ -1,19 +1,20 @@
 <?php
+
 namespace Acme\TestBundle\Service;
+
 namespace KateGray\LdapUserBundle\Security\Encoder;
 
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 class LdapPasswordEncoder implements PasswordEncoderInterface
 {
-
     public function encodePassword($raw, $salt)
     {
-        $salt = substr ($salt, 16);
+        $salt = substr($salt, 16);
 
-        return sprintf (
+        return sprintf(
             '{crypt}%s',
-            crypt ($raw, '$6$rounds=5000$' . $salt . '$')
+            crypt($raw, '$6$rounds=5000$' . $salt . '$')
         );
     }
 
@@ -21,5 +22,4 @@ class LdapPasswordEncoder implements PasswordEncoderInterface
     {
         return $encoded === $this->encodePassword($raw, $salt);
     }
-
 }
