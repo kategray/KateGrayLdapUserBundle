@@ -1,10 +1,10 @@
 <?php
 
-use FOS\UserBundle\Model\User;
+namespace KateGray\LdapUserBundle\Model\OpenLdap;
+
+use FOS\UserBundle\Model\User as BaseUser;
 use FOS\UserBundle\Model\UserInterface;
 
-namespace KateGray\UserBundle\Model\OpenLdap\StandardUser;
-
-class StandardUser extends User implements UserInterface
+class StandardUser extends BaseUser implements UserInterface
 {
 }

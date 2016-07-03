@@ -1,8 +1,10 @@
 <?php
 
-namespace KateGray\UserManager\Security\User;
+namespace KateGray\LdapUserBundle\Security\User;
 
 use FOS\UserBundle\Model\UserManagerInterface;
+use FOS\UserBundle\Model\UserInterface;
+use KateGray\LdapUserBundle\Model\OpenLdap\StandardUser;
 
 class LdapUserManager implements UserManagerInterface
 {
@@ -19,7 +21,9 @@ class LdapUserManager implements UserManagerInterface
      * @return UserInterface
      */
     public function createUser() {
+        $user = new StandardUser();
 
+        return $user;
     }
 
     /**
@@ -29,7 +33,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function deleteUser(UserInterface $user);
+    public function deleteUser(UserInterface $user) {
+
+    }
 
     /**
      * Finds one user by the given criteria.
@@ -38,7 +44,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface
      */
-    public function findUserBy(array $criteria);
+    public function findUserBy(array $criteria) {
+
+    }
 
     /**
      * Find a user by its username.
@@ -47,7 +55,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsername($username);
+    public function findUserByUsername($username) {
+
+    }
 
     /**
      * Finds a user by its email.
@@ -56,7 +66,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByEmail($email);
+    public function findUserByEmail($email) {
+
+    }
 
     /**
      * Finds a user by its username or email.
@@ -65,7 +77,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByUsernameOrEmail($usernameOrEmail);
+    public function findUserByUsernameOrEmail($usernameOrEmail) {
+
+    }
 
     /**
      * Finds a user by its confirmationToken.
@@ -74,21 +88,26 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return UserInterface or null if user does not exist
      */
-    public function findUserByConfirmationToken($token);
+    public function findUserByConfirmationToken($token) {
+
+    }
 
     /**
      * Returns a collection with all user instances.
      *
      * @return \Traversable
      */
-    public function findUsers();
+    public function findUsers() {
+
+    }
 
     /**
      * Returns the user's fully qualified class name.
      *
      * @return string
      */
-    public function getClass();
+    public function getClass() {
+    }
 
     /**
      * Reloads a user.
@@ -97,7 +116,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function reloadUser(UserInterface $user);
+    public function reloadUser(UserInterface $user) {
+
+    }
 
     /**
      * Updates a user.
@@ -106,7 +127,10 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updateUser(UserInterface $user);
+    public function updateUser(UserInterface $user) {
+var_dump ($user);
+exit ('Updating user');
+    }
 
     /**
      * Updates the canonical username and email fields for a user.
@@ -115,7 +139,9 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updateCanonicalFields(UserInterface $user);
+    public function updateCanonicalFields(UserInterface $user) {
+
+    }
 
     /**
      * Updates a user password if a plain password is set.
@@ -124,5 +150,7 @@ class LdapUserManager implements UserManagerInterface
      *
      * @return void
      */
-    public function updatePassword(UserInterface $user);
+    public function updatePassword(UserInterface $user) {
+
+    }
 }
