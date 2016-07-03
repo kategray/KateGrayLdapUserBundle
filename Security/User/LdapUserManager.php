@@ -4,15 +4,34 @@ namespace KateGray\LdapUserBundle\Security\User;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Model\UserInterface;
+use KateGray\LdapUserBundle\Layout\LayoutInterface;
 use KateGray\LdapUserBundle\Model\OpenLdap\StandardUser;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class LdapUserManager implements UserManagerInterface
 {
+    /**
+     * Configuration
+     */
+    protected $configuration;
+
+    /**
+     * @var EncoderFactoryInterface
+     */
+    protected $encoderFactory;
+
+    /**
+     * @var LayoutInterface
+     */
+    protected $layout;
+
     /*
      * @Todo: Get these from the configuration
      */
-    public function __construct () {
-    
+    public function __construct (EncoderFactoryInterface $encoderFactory, LayoutInterface $layout, $configuration) {
+        $this->encoderFactory = $encoderFactory;
+        $this->layout = $layout;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -128,8 +147,15 @@ class LdapUserManager implements UserManagerInterface
      * @return void
      */
     public function updateUser(UserInterface $user) {
-var_dump ($user);
-exit ('Updating user');
+        $this->updateCanonicalFields($user);
+        $this->updatePassword($user);
+
+        // Layout the user
+        $node = $this->layout->layout ($user);
+
+        var_dump ($node);
+        var_dump ($user);
+        exit ('Updating user');
     }
 
     /**
@@ -151,6 +177,15 @@ exit ('Updating user');
      * @return void
      */
     public function updatePassword(UserInterface $user) {
+        if (0 !== strlen($password = $user->getPlainPassword())) {
+            $encoder = $this->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($password, $user->getSalt()));
+            $user->eraseCredentials();
+        }
+    }
 
+    protected function getEncoder(UserInterface $user)
+    {
+        return $this->encoderFactory->getEncoder($user);
     }
 }

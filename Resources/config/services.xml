@@ -5,14 +5,31 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <parameter key="kategray.ldap_user_bundle.layout.openldap_standard.class">KateGray\LdapUserBundle\Layout\OpenLdap\Standard</parameter>
+        <parameter key="kategray.ldap_user_bundle.password_encoder.class">KateGray\LdapUserBundle\Security\Encoder\LdapPasswordEncoder</parameter>
         <parameter key="kategray.ldap_user_bundle.user_manager.class">KateGray\LdapUserBundle\Security\User\LdapUserManager</parameter>
         <parameter key="kategray.ldap_user_bundle.user_provider.class">KateGray\LdapUserBundle\Security\User\LdapUserProvider</parameter>
     </parameters>
 
     <services>
+        <!-- User Manager -->
         <service id="kategray.ldap_user_bundle.user_manager" class="%kategray.ldap_user_bundle.user_manager.class%">
+            <argument type="service" id="security.encoder_factory" />
+            <argument type="service" id="kategray.ldap_user_bundle.layout" />
+            <argument>%kategray.ldap_user_bundle.config%</argument>
         </service>
+
+        <!-- User Provider -->
         <service id="kategray.ldap_user_bundle.user_provider" class="%kategray.ldap_user_bundle.user_provider.class%">
+        </service>
+
+        <!-- Password Encoders -->
+        <service id="kategray.ldap_user_bundle.password_encoder" class="%kategray.ldap_user_bundle.password_encoder.class%">
+        </service>
+
+        <!-- Layouts -->
+        <service id="kategray.ldap_user_bundle.layout.openldap_standard" class="%kategray.ldap_user_bundle.layout.openldap_standard.class%">
+            <argument>%kategray.ldap_user_bundle.config%</argument>
         </service>
     </services>
 
