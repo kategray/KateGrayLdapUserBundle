@@ -1,5 +1,5 @@
 {
-    "name": "kategray/ldap-user-bundle",
+    "name": "kategray/ldapuserbundle",
     "type": "symfony-bundle",
     "description": "This bundle adds support for read and write user management in LDAP for FOSUserBundle.",
     "keywords": ["ldap", "authentication"],
