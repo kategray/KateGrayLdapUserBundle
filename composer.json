@@ -1,0 +1,33 @@
+{
+    "name": "kategray/ldap-user-bundle",
+    "type": "symfony-bundle",
+    "description": "This bundle adds support for read and write user management in LDAP for FOSUserBundle.",
+    "keywords": ["ldap", "authentication"],
+    "license": "MIT",
+    "homepage": "https://github.com/kategray/KateGrayLdapUserBundle",
+    "authors": [
+        {
+            "name": "Kate Gray"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "psr/log": "~1.0",
+        "friendsofsymfony/user-bundle": "~1.3",
+        "symfony/config": "2.3 - 3",
+        "symfony/dependency-injection": "2.3 - 3",
+        "symfony/polyfill-php56": "^1.1",
+        "symfony/security": "2.3 - 3",
+        "symfony/security-bundle": "2.3 - 3",
+        "zendframework/zend-ldap": "2.5 - 3"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "~1.11",
+        "phpunit/phpunit": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "KateGray\\LdapUserBundle\\": ""
+        }
+    }
+}
